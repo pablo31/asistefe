@@ -46,8 +46,6 @@ iterator = Iterator.new(source, writer, progress_control)
 puts "Time available: #{calendar.max_practices_qty} practices"
 puts "Real practices count: #{source.entries.count}"
 
-# iterator.start!
-
-binding.pry
+iterator.start!
 
 puts "Thats all folks!"

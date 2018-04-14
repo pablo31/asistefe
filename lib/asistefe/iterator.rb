@@ -10,7 +10,7 @@ module Asistefe
     def start!
       puts 'Starting source...'
       @source.entries.each_with_index do |entry, i|
-        puts "IMPACT - #{time} - #{entry.to_human}"
+        puts "IMPACT - #{entry.to_human}"
         @writer.prepare_affiliate(entry)
         @writer.prepare_diagnoses(entry)
         if @progress_control.save?(entry)

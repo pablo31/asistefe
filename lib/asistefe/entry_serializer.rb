@@ -6,7 +6,7 @@ module Asistefe
       practice_time = Time.parse(values[0])
       patient_number = values[1]
       kinship_number = values[2]
-      diagnoses_codes = values[3].split('+')
+      diagnoses_codes = values[3].gsub('.', '').split('+')
       Entry.new(patient_number, kinship_number, diagnoses_codes, practice_time)
     end
 

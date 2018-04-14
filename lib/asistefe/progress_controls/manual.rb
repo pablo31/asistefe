@@ -9,6 +9,7 @@ module Asistefe
 
       def save?(entry)
         focus
+        puts 'Is entry ok? [y/n]'
         attention_beep
         return true if ['y', 'Y'].include?(getch)
         puts "Users says: no"
@@ -17,6 +18,7 @@ module Asistefe
 
       def continue?
         focus
+        puts 'Press any key to continue'
         normal_beep
         getch
       end
