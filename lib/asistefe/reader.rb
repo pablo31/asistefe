@@ -1,8 +1,8 @@
 module Asistefe
   class Reader
 
-    def initialize(file_path)
-      @file_path = file_path
+    def initialize(file_manager)
+      @file_manager = file_manager
     end
 
     def fetch
@@ -20,7 +20,7 @@ module Asistefe
     private
 
     def text
-      @text ||= File.read(@file_path).split("\n")
+      @text ||= @file_manager.read_patients.split("\n")
     end
 
     def next_pos
