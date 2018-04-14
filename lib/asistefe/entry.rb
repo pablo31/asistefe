@@ -1,9 +1,10 @@
 module Asistefe
   class Entry
 
-    attr_reader :patient_number, :kinship_number, :practice_time
+    attr_reader :index_number, :patient_number, :kinship_number, :practice_time
 
-    def initialize(patient_number, kinship_number, diagnoses_codes, practice_time)
+    def initialize(index_number, patient_number, kinship_number, diagnoses_codes, practice_time)
+      @index_number    = index_number
       @patient_number  = patient_number
       @kinship_number  = kinship_number
       @diagnoses_codes = diagnoses_codes
@@ -22,7 +23,7 @@ module Asistefe
     end
 
     def to_human
-      "#{@practice_time} / #{@patient_number} #{@kinship_number} / #{diagnoses_codes*','} / #{practice_code}"
+      "#{index_number} / #{@practice_time} / #{@patient_number} #{@kinship_number} / #{diagnoses_codes*','} / #{practice_code}"
     end
 
   end

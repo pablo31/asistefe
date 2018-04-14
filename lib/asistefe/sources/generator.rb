@@ -9,19 +9,21 @@ module Asistefe
 
       def entries
         array = []
+        i = 0
         while !@reader.completed?
           input = @reader.fetch
           practice_time = @calendar.next_practice_time
-          array << entry_from(input, practice_time)
+          array << entry_from(i, input, practice_time)
+          i += 1
         end
         array
       end
 
       protected
 
-      def entry_from(input, practice_time)
+      def entry_from(i, input, practice_time)
         parser = Asistefe::Parser.new(input)
-        Entry.new(parser.patient_number, parser.kinship_number, parser.diagnoses_codes, practice_time)
+        Entry.new(i, parser.patient_number, parser.kinship_number, parser.diagnoses_codes, practice_time)
       end
 
     end

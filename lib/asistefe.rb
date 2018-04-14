@@ -27,3 +27,4 @@ require_relative 'asistefe/sources/recovery'
 require_relative 'asistefe/sources/mixed'
 
 require_relative 'asistefe/progress_controls/manual'
+require_relative 'asistefe/progress_controls/screenshots'

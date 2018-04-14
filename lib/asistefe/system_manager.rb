@@ -50,14 +50,14 @@ module Asistefe
     def prepare
       click_over(EMPTYNESS)
       send_keys('{END}')
-      sleep(0.5)
+      movement_sleep
       click_over(DOCTOR_COMBO)
       click_over(FIRST_DOCTOR_OF_COMBO)
     end
 
     def send_date(date_or_time)
       click_over(DATE_INPUT)
-      sleep(0.5)
+      movement_sleep
       today = Date.today
       days_to_move = (today - date_or_time.to_date).to_i
       days_to_move.times do
@@ -120,7 +120,7 @@ module Asistefe
     def restart
       click_over(EMPTYNESS)
       send_keys('{F5}')
-      5.times { network_delay }
+      7.times { network_delay }
       click_over(NEW_ENTRY_BUTTON)
     end
 
@@ -133,6 +133,7 @@ module Asistefe
     def move_to(xy)
       movement_sleep
       @output_interface.move_mouse(xy)
+      movement_sleep
     end
 
     def click

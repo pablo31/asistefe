@@ -39,7 +39,8 @@ source = Source.new(mixed, offset_start, offset_end)
 
 # iterator
 
-progress_control = ProgressControls::Manual.new(writer)
+# progress_control = ProgressControls::Manual.new(writer)
+progress_control = ProgressControls::Screenshots.new(file_manager)
 
 iterator = Iterator.new(source, writer, progress_control)
 

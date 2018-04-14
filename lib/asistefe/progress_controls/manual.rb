@@ -16,7 +16,7 @@ module Asistefe
         false
       end
 
-      def continue?
+      def continue?(entry)
         focus
         puts 'Press any key to continue'
         normal_beep

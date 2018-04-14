@@ -29,8 +29,6 @@ module Asistefe
       File.read(path(CALENDAR_PATH))
     end
 
-    protected
-
     def path(relative_path)
       "#{@base_path}/#{relative_path}"
     end

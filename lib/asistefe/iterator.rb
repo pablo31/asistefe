@@ -18,7 +18,7 @@ module Asistefe
         else
           @writer.cancel
         end
-        @progress_control.continue?
+        @progress_control.continue?(entry)
         @writer.restart
       end
     end
