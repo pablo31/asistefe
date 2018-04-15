@@ -11,11 +11,12 @@ module Asistefe
 
       def save?(entry)
         take_screenshot(entry, 'before')
+        normal_beep
         true
       end
 
       def continue?(entry)
-        sleep(5)
+        sleep(3)
         take_screenshot(entry, 'confirmed')
       end
 
@@ -26,7 +27,6 @@ module Asistefe
         file_name += "-#{status}" if status
         file_path = @file_manager.path("#{file_name}.png")
         `import -window '#{CHROME_WINDOW_NAME}' #{file_path}`
-        normal_beep
       end
 
       def normal_beep

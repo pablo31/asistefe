@@ -4,10 +4,15 @@ module Asistefe
     # how to get cursor pos?
     # xdotool getmouselocation --shell
 
+    NETWORK_SLEEP_TIME = 6 # seconds
+    MOVEMENT_SLEEP_TIME = 0.3 # seconds
+
     CONSOLE                    = [2000, 400]
     EMPTYNESS                  = [27,   555]
 
-    NEW_ENTRY_BUTTON           = [1186, 423]
+    CHROME_HOME_BUTTON         = [101,  71]
+
+    NEW_ENTRY_BUTTON           = [1186, 417]
 
     DOCTOR_COMBO               = [488,  220]
     FIRST_DOCTOR_OF_COMBO      = [489,  247]
@@ -95,7 +100,7 @@ module Asistefe
       click_over(PRACTICE_CODE_INPUT)
       send_keys(practice_code)
       send_keys('{RETURN}')
-      network_delay
+      2.times { network_delay }
       click_over(FIRST_PRACTICE_OF_LIST)
       click_over(TIME_INPUT)
       time_str = time.strftime('%H%M')
@@ -118,8 +123,9 @@ module Asistefe
     end
 
     def restart
-      click_over(EMPTYNESS)
-      send_keys('{F5}')
+      # click_over(EMPTYNESS)
+      # send_keys('{F5}')
+      click_over(CHROME_HOME_BUTTON)
       7.times { network_delay }
       click_over(NEW_ENTRY_BUTTON)
     end
@@ -151,11 +157,11 @@ module Asistefe
     end
 
     def network_delay
-      sleep(2)
+      sleep(NETWORK_SLEEP_TIME)
     end
 
     def movement_sleep
-      sleep(0.3)
+      sleep(MOVEMENT_SLEEP_TIME)
     end
 
     def keys_for_kinship(kinship_number)

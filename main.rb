@@ -4,8 +4,10 @@
 working_directory_path = ARGV[0]
 practices_interval = ARGV[1].to_i
 
-offset_start = ARGV[2]&.to_i
-offset_end = ARGV[3]&.to_i
+# offset_start = ARGV[2]&.to_i
+# offset_end = ARGV[3]&.to_i
+
+entry_ids = ARGV[2].split(',').map(&:to_i)
 
 require 'json'
 require'pry'
@@ -35,7 +37,8 @@ generator = Sources::Generator.new(reader, calendar)
 recovery = Sources::Recovery.new(file_manager, serializator)
 mixed = Sources::Mixed.new(generator, recovery)
 
-source = Source.new(mixed, offset_start, offset_end)
+# source = LimitedSource.new(mixed, offset_start, offset_end)
+source = ScopedSource.new(mixed, entry_ids)
 
 # iterator
 

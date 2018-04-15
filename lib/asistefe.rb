@@ -9,7 +9,10 @@ require_relative 'asistefe/file_manager'
 
 require_relative 'asistefe/reader'
 require_relative 'asistefe/parser'
+
 require_relative 'asistefe/source'
+require_relative 'asistefe/limited_source'
+require_relative 'asistefe/scoped_source'
 
 require_relative 'asistefe/entry'
 require_relative 'asistefe/entry_serializer'
