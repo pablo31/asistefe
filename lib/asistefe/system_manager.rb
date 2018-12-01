@@ -4,8 +4,8 @@ module Asistefe
     # how to get cursor pos?
     # xdotool getmouselocation --shell
 
-    NETWORK_SLEEP_TIME = 6 # seconds
-    MOVEMENT_SLEEP_TIME = 0.3 # seconds
+    NETWORK_SLEEP_TIME = 5 # seconds
+    MOVEMENT_SLEEP_TIME = 0.4 # seconds
 
     CONSOLE                    = [2000, 400]
     EMPTYNESS                  = [27,   555]
@@ -74,6 +74,7 @@ module Asistefe
     def send_affiliate(patient_number, kinship_number)
       click_over(AFFILIATE_INPUT)
       # click_over(CLEAN_AFFILIATE_BUTTON)
+      network_delay
       click_over(PATIENT_NUMBER_INPUT)
       send_keys(patient_number)
       click_over(KINSHIP_NUMBER_COMBO)
@@ -82,6 +83,7 @@ module Asistefe
       click_over(AFFILIATE_SEARCH_BUTTON)
       network_delay
       click_over(FIRST_AFFILIATE_OF_LIST)
+      network_delay
     end
 
     def send_diagnosis(diagnosis_code, primary = true)
@@ -92,6 +94,7 @@ module Asistefe
       2.times { network_delay }
       click_over(FIRST_DIAGNOSIS_OF_LIST)
       click_over(primary ? PRIMARY_DIAGNOSIS_OPTION : SECONDARY_DIAGNOSIS_OPTION)
+      network_delay
       click_over(ADD_DIAGNOSIS_BUTTON)
     end
 
@@ -102,13 +105,17 @@ module Asistefe
       send_keys('{RETURN}')
       2.times { network_delay }
       click_over(FIRST_PRACTICE_OF_LIST)
+      network_delay
       click_over(TIME_INPUT)
       time_str = time.strftime('%H%M')
       send_keys(time_str)
       click_over(QTY_INPUT)
       send_keys('1')
+      movement_sleep
       click_over(MODALITY_COMBO)
+      movement_sleep
       click_over(FIRST_MODALITY_OF_COMBO)
+      movement_sleep
       click_over(ADD_PRACTICE_BUTTON)
     end
 
@@ -126,8 +133,9 @@ module Asistefe
       # click_over(EMPTYNESS)
       # send_keys('{F5}')
       click_over(CHROME_HOME_BUTTON)
-      7.times { network_delay }
+      4.times { network_delay }
       click_over(NEW_ENTRY_BUTTON)
+      network_delay
     end
 
     def return_to_program
