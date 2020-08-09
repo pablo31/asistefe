@@ -24,7 +24,7 @@ module Asistefe
     end
 
     def id
-      raise "[Patient number + kinship] must be of length 13 or 14 (#{matcher[1]})" if (matcher[1].size != 13 || matcher[1].size != 14)
+      raise "[Patient number + kinship] must be of length 13 or 14 (#{matcher[1]})" if ![13, 14].include?(matcher[1].size)
       matcher[1]
     end
 
