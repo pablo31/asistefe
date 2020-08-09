@@ -6,11 +6,11 @@ module Asistefe
     end
 
     def patient_number
-      id[0..11]
+      id.reverse[2..id.length].reverse
     end
 
     def kinship_number
-      id[12..13]
+      id.reverse[0..1].reverse
     end
 
     def diagnoses_codes
@@ -24,7 +24,7 @@ module Asistefe
     end
 
     def id
-      raise "[Patient number + kinship] must be of length 14 (#{matcher[1]})" if matcher[1].size != 14
+      raise "[Patient number + kinship] must be of length 13 or 14 (#{matcher[1]})" if (matcher[1].size != 13 || matcher[1].size != 14)
       matcher[1]
     end
 
