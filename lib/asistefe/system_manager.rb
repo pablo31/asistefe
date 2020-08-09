@@ -4,7 +4,7 @@ module Asistefe
     # how to get cursor pos?
     # xdotool getmouselocation --shell
 
-    NETWORK_SLEEP_TIME = 5 # seconds
+    NETWORK_SLEEP_TIME = 1 * 1.5 # seconds (weekends = 1.5, week = 4)
     MOVEMENT_SLEEP_TIME = 0.4 # seconds
 
     CONSOLE                    = [2000, 400]
@@ -15,6 +15,7 @@ module Asistefe
     NEW_ENTRY_BUTTON           = [1186, 417]
 
     DOCTOR_COMBO               = [488,  220]
+
     FIRST_DOCTOR_OF_COMBO      = [489,  247]
 
     DATE_INPUT                 = [482,  186]
@@ -178,6 +179,12 @@ module Asistefe
         '0'
       when '01'
         '00'
+      when '02'
+        '000'
+      when '03'
+        '0000'
+      when '04'
+        '00000'
       when '16'
         '1111111'
       when '99'
