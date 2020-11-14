@@ -4,33 +4,33 @@ module Asistefe
     # how to get cursor pos?
     # xdotool getmouselocation --shell
 
-    NETWORK_SLEEP_TIME = 1 * 1.5 # seconds (weekends = 1.5, week = 4)
+    NETWORK_SLEEP_TIME = 1 * 4 # seconds (weekends = 1.5, week = 4)
     MOVEMENT_SLEEP_TIME = 0.4 # seconds
 
     CONSOLE                    = [2000, 400]
     EMPTYNESS                  = [27,   555]
 
-    CHROME_HOME_BUTTON         = [101,  71]
+    CHROME_HOME_BUTTON         = [118,   76]
 
     NEW_ENTRY_BUTTON           = [1186, 417]
 
-    DOCTOR_COMBO               = [488,  220]
+    DOCTOR_COMBO               = [748,  356]
 
-    FIRST_DOCTOR_OF_COMBO      = [489,  247]
+    FIRST_DOCTOR_OF_COMBO      = [588,  391]
 
-    DATE_INPUT                 = [482,  186]
+    DATE_INPUT                 = [744,  326]
 
-    AFFILIATE_INPUT            = [1304, 186]
-    CLEAN_AFFILIATE_BUTTON     = [1055, 324]
-    PATIENT_NUMBER_INPUT       = [915,  290]
-    KINSHIP_NUMBER_COMBO       = [1371, 289]
-    AFFILIATE_SEARCH_BUTTON    = [950,  324]
-    FIRST_AFFILIATE_OF_LIST    = [728,  391]
+    AFFILIATE_INPUT            = [1419, 329]
+    CLEAN_AFFILIATE_BUTTON     = [1062, 462]
+    PATIENT_NUMBER_INPUT       = [914,  427]
+    KINSHIP_NUMBER_COMBO       = [1530, 429]
+    AFFILIATE_SEARCH_BUTTON    = [953,  461]
+    FIRST_AFFILIATE_OF_LIST    = [892,  531]
 
-    DIAGNOSIS_INPUT            = [150,  497]
-    DIAGNOSIS_CODE_INPUT       = [222,  532]
-    DIAGNOSIS_SEARCH_BUTTON    = [479,  566]
-    FIRST_DIAGNOSIS_OF_LIST    = [231,  630]
+    DIAGNOSIS_INPUT            = [969,  492]
+    DIAGNOSIS_CODE_INPUT       = [220,  531]
+    DIAGNOSIS_SEARCH_BUTTON    = [479,  565]
+    FIRST_DIAGNOSIS_OF_LIST    = [368,  635]
     PRIMARY_DIAGNOSIS_OPTION   = [1014, 481]
     SECONDARY_DIAGNOSIS_OPTION = [1015, 510]
     ADD_DIAGNOSIS_BUTTON       = [1400, 495]
@@ -49,13 +49,14 @@ module Asistefe
     ACCEPT_BUTTON              = [136,  824]
     CANCEL_BUTTON              = [231,  826]
 
+    ERROR_ACCEPT_BUTTON        = [788,  283]
+
     def initialize(output_interface)
       @output_interface = output_interface
     end
 
     def prepare
       click_over(EMPTYNESS)
-      send_keys('{END}')
       movement_sleep
       click_over(DOCTOR_COMBO)
       click_over(FIRST_DOCTOR_OF_COMBO)
@@ -69,7 +70,11 @@ module Asistefe
       days_to_move.times do
         send_keys('{LEFT}', false)
       end
+      movement_sleep
       send_keys(' ') # space
+      movement_sleep
+      send_keys('{HOME}')
+      movement_sleep
     end
 
     def send_affiliate(patient_number, kinship_number)
@@ -88,6 +93,8 @@ module Asistefe
     end
 
     def send_diagnosis(diagnosis_code, primary = true)
+      send_keys('{END}')
+      movement_sleep
       click_over(DIAGNOSIS_INPUT)
       click_over(DIAGNOSIS_CODE_INPUT)
       send_keys(diagnosis_code)
@@ -134,7 +141,9 @@ module Asistefe
       # click_over(EMPTYNESS)
       # send_keys('{F5}')
       click_over(CHROME_HOME_BUTTON)
-      4.times { network_delay }
+      3.times { network_delay }
+      click_over(ERROR_ACCEPT_BUTTON)
+      network_delay
       click_over(NEW_ENTRY_BUTTON)
       network_delay
     end
